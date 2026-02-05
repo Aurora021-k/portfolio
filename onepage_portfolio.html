@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KAROL ABEL (CONGMING CHEN) — Senior Frontend Engineer</title>
+  <meta name="description" content="Senior Frontend Engineer specializing in React/Next.js/TypeScript for high-scale commerce. Conversion, Core Web Vitals, A/B testing, and accessibility-first systems." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg: #0b0d12;
+      --surface: #0f1218;
+      --card: rgba(255,255,255,0.06);
+      --text: #e9eefb;
+      --muted: #aab3c5;
+      --accent: #7c6cff;
+      --accent-2: #25d0a6;
+      --ring: rgba(124,108,255,0.45);
+      --shadow: 0 10px 30px rgba(0,0,0,0.35);
+      --radius: 14px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background: radial-gradient(1200px 800px at 80% -20%, rgba(124,108,255,0.18), transparent 60%),
+                  radial-gradient(1000px 700px at -10% 30%, rgba(37,208,166,0.14), transparent 60%),
+                  var(--bg);
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{ width:100%; max-width:1100px; margin:0 auto; padding:0 20px; }
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(180deg, rgba(15,18,24,0.7), rgba(15,18,24,0.35));
+      border-bottom:1px solid rgba(255,255,255,0.06);
+    }
+    .nav{ display:flex; align-items:center; justify-content:space-between; height:68px; }
+    .brand{ display:flex; align-items:center; gap:12px; font-weight:700; letter-spacing:0.2px; }
+    .badge{
+      width:32px; height:32px; border-radius:9px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 6px 20px rgba(124,108,255,0.35), inset 0 0 0 1px rgba(255,255,255,0.25);
+    }
+    .nav a.link{ color:var(--muted); padding:8px 12px; border-radius:8px; transition:color .2s, background .2s; }
+    .nav a.link:hover{ color:var(--text); background: rgba(255,255,255,0.04); }
+    .cta{
+      display:inline-flex; align-items:center; gap:10px;
+      background: linear-gradient(135deg, rgba(124,108,255,0.2), rgba(37,208,166,0.2));
+      color:var(--text); padding:10px 14px; border-radius:10px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .2s ease;
+    }
+    .cta:hover{ transform: translateY(-1px); box-shadow: 0 14px 30px rgba(0,0,0,0.4); }
+
+    /* Hero */
+    .hero{ padding:88px 0 54px; }
+    .hero-inner{ display:grid; grid-template-columns: 1.05fr 0.95fr; gap:36px; align-items:center; }
+    .name{
+      font-size: clamp(42px, 7vw, 76px);
+      line-height:1.02;
+      margin:0;
+      font-weight:800;
+      letter-spacing:-0.02em;
+    }
+    .subtitle{
+      font-weight:700; color:#cfd6ff; margin:10px 0 10px; letter-spacing:0.2px;
+    }
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:6px 10px; border-radius:999px;
+      background: rgba(124,108,255,0.12);
+      color:#cfd6ff; font-weight:600; letter-spacing:0.3px; font-size:14px;
+      border:1px solid rgba(124,108,255,0.35);
+    }
+    .lead{ color:var(--muted); font-size: clamp(16px, 2.2vw, 18px); max-width:60ch; margin-top:6px; }
+    .hero-actions{ display:flex; gap:14px; margin-top:22px; flex-wrap:wrap; }
+    .btn{
+      padding:12px 16px; border-radius:12px; font-weight:600;
+      border:1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color:var(--text);
+      transition: .2s ease;
+    }
+    .btn:hover{ background: rgba(255,255,255,0.08); transform: translateY(-1px); }
+    .btn.primary{
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border: none;
+      box-shadow: 0 12px 28px rgba(124,108,255,0.35);
+    }
+    .hero-card{
+      position:relative; border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      padding:0; aspect-ratio: 16/10;
+      box-shadow: var(--shadow); overflow:hidden;
+    }
+    .hero-card img{
+      width:100%; height:100%; object-fit: cover; opacity:0.95;
+    }
+    .hero-card .grid{ position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 28px 28px; mask-image: radial-gradient(90% 60% at 50% 50%, black 60%, transparent 100%); }
+    .hero-card .label{ position:absolute; bottom:18px; left:18px; padding:8px 10px; border-radius:10px; background: rgba(15,18,24,0.7); border:1px solid rgba(255,255,255,0.08); font-family: "JetBrains Mono", ui-monospace; font-size:12px; color:#dfe4f5; }
+
+    /* Section head */
+    .section{ padding: 34px 0 22px; }
+    .section-head{ display:flex; align-items:baseline; justify-content:space-between; gap:16px; margin-bottom:18px; }
+    .section h2{ font-size: clamp(22px, 3vw, 28px); letter-spacing:-0.01em; margin:0; }
+    .muted{ color:var(--muted); }
+
+    /* Projects grid */
+    .grid{ display:grid; gap:16px; grid-template-columns: repeat(12, 1fr); }
+    .card{
+      grid-column: span 12;
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      overflow:hidden;
+      transition: transform .16s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .card:hover{ transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.45); border-color: rgba(255,255,255,0.16)}
+    .thumb{ height: 220px; background: #131826; position:relative; overflow:hidden; }
+    .thumb .overlay{ position:absolute; inset:0; background: radial-gradient(60% 40% at 60% 50%, rgba(124,108,255,0.25), transparent 60%); mix-blend-mode: screen; opacity:.8; }
+    .thumb img{ width:100%; height:100%; object-fit: cover; opacity:.9; }
+    .content{ padding:16px 16px 18px; }
+    .k{ display:inline-block; font-size:12px; padding:6px 10px; border-radius:999px; background: rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.1); color:#dfe4f5; }
+    .title{ margin:10px 0 6px; font-weight:700; font-size:18px; }
+    .desc{ color:var(--muted); font-size:14px; margin:0 0 10px; }
+    .meta{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; }
+    .tag{ font-size:12px; color:#c8d1e6; padding:4px 8px; border-radius:8px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); }
+    @media (min-width:640px){ .card{ grid-column: span 6; } }
+    @media (min-width:980px){ .card{ grid-column: span 4; } }
+
+    /* Resume / Experience */
+    .resume-wrap{
+      display:grid; gap:16px; grid-template-columns: 1fr; margin-top:6px;
+    }
+    .resume-card{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border:1px solid rgba(255,255,255,0.08);
+      padding:16px;
+    }
+    .resume-header{ display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; }
+    .role{ font-weight:700; }
+    .org{ color:#d8d4ff; font-weight:600; }
+    .period{ color:var(--muted); font-size:14px; }
+    .loc{ color:var(--muted); font-size:14px; }
+    .bullets{ margin:10px 0 0; padding-left:18px; }
+    .bullets li{ margin:6px 0; }
+    .pill{
+      display:inline-flex; gap:8px; align-items:center; padding:10px 12px; border-radius:999px;
+      background: rgba(37,208,166,0.12); border:1px solid rgba(37,208,166,0.35); color:#baf2e5; font-weight:600; width:max-content;
+    }
+    .list{ display:grid; gap:10px; margin:12px 0 0; padding:0; list-style:none; }
+    .list li{ padding:10px 12px; border-radius:12px; background: rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); }
+
+    /* Contact */
+    .contact{ margin-top:8px; display:grid; gap:16px; grid-template-columns: 1.2fr 0.8fr; }
+    @media (max-width:900px){
+      .hero-inner{ grid-template-columns: 1fr; }
+      .contact{ grid-template-columns: 1fr; }
+    }
+    .form{ display:grid; gap:12px; padding:16px; border-radius:var(--radius); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border:1px solid rgba(255,255,255,0.08); }
+    label{ font-size:12px; color:#cbd4e6; }
+    input, textarea{
+      width:100%; padding:12px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04); color:var(--text); font: inherit; outline: none;
+    }
+    input:focus, textarea:focus{ border-color: var(--ring); box-shadow: 0 0 0 4px rgba(124,108,255,0.12) }
+    textarea{ min-height:120px; resize: vertical; }
+    .side{ display:flex; flex-direction:column; gap:12px; }
+    .socials{ display:flex; gap:10px; flex-wrap:wrap; }
+    .socials a{ padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); color:#dfe6fa; transition:.2s ease; }
+    .socials a:hover{ background: rgba(255,255,255,0.08) }
+    footer{ color:var(--muted); font-size:13px; padding:28px 0 44px; text-align:center; }
+
+    /* Utilities */
+    .mono{ font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:12px; color:#c9d1f8; }
+    .stack{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .chip{ font-size:12px; color:#c8d1e6; padding:6px 10px; border-radius:999px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="badge" aria-hidden="true"></div>
+        <span>KAROL ABEL</span>
+      </div>
+      <nav>
+        <a class="link" href="#work">Work</a>
+        <a class="link" href="#resume">Resume</a>
+        <a class="link" href="#contact">Contact</a>
+      </nav>
+      <a class="cta" href="mailto:shinny.aurora021@gmail.com" aria-label="Send email">
+        <span>Let’s talk</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div>
+          <h1 class="name">KAROL ABEL</h1>
+          <div class="subtitle">(CONGMING CHEN) • Senior Frontend Engineer</div>
+          <span class="kicker">React • Next.js • TypeScript • High‑scale commerce</span>
+          <p class="lead">
+            I specialize in performance and accessibility—lifting Core Web Vitals, shipping A/B experiments, and building design systems that scale. Comfortable across Node.js/serverless with CI/CD and analytics instrumentation for data‑driven delivery.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#work">View Projects</a>
+            <a class="btn" href="#resume">View Resume</a>
+            <a class="btn" href="/Karol-Abel-Resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+          </div>
+          <p class="mono" style="margin-top:12px;">New Territories, Hong Kong SAR • <a href="mailto:shinny.aurora021@gmail.com">shinny.aurora021@gmail.com</a></p>
+        </div>
+        <div>
+          <div class="hero-card">
+            <img src="#" alt="Abstract neon gradients and geometric lines evoking performance and modern web" />
+            <div class="grid" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Selected Work -->
+    <section id="work" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Selected Work</h2>
+          <p class="muted">Commerce, performance, design systems</p>
+        </div>
+        <div class="grid">
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1400&auto=format&fit=crop" alt="Next.js Headless Commerce storefront" />
+              <div class="overlay"></div>
+            </div>
+            <div class="content">
+              <span class="k">Next.js Headless</span>
+              <h3 class="title">High‑scale Storefront</h3>
+              <p class="desc">SSR/ISR, code splitting, critical CSS, and image optimization cut LCP by 35% and improved FID by 25% on PDP/checkout.</p>
+              <div class="meta">
+                <div class="tags"><span class="tag">Next.js</span><span class="tag">Core Web Vitals</span><span class="tag">Design System</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1400&auto=format&fit=crop" alt="Stripe subscriptions integration" />
+              <div class="overlay"></div>
+            </div>
+            <div class="content">
+              <span class="k">Stripe</span>
+              <h3 class="title">Subscriptions & Billing</h3>
+              <p class="desc">Secure tokenization, trials, proration; webhook‑driven UI and retry‑safe UX supporting 10k+ active subscribers.</p>
+              <div class="meta">
+                <div class="tags"><span class="tag">Stripe</span><span class="tag">Webhooks</span><span class="tag">Next.js</span></div>
+              </div>
+            </div>
+          </article>
+          <article class="card">
+            <div class="thumb">
+              <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?q=80&w=1400&auto=format&fit=crop" alt="Accessible component library and documentation" />
+              <div class="overlay"></div>
+            </div>
+            <div class="content">
+              <span class="k">WCAG 2.1 AA</span>
+              <h3 class="title">Accessibility‑first System</h3>
+              <p class="desc">Component library with tokens, docs, and visual regression—reduced UI defects and accelerated delivery with Storybook.</p>
+              <div class="meta">
+                <div class="tags"><span class="tag">Storybook</span><span class="tag">Testing</span><span class="tag">A11y</span></div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Resume</h2>
+          <p class="muted">Experience, education, and tools</p>
+        </div>
+
+        <!-- Summary -->
+        <div class="resume-wrap">
+          <div class="resume-card">
+            <span class="pill">Summary</span>
+            <p class="muted" style="margin-top:10px;">
+              Senior Frontend Engineer specializing in React/Next.js/TypeScript for high‑scale commerce. Proven to lift conversion via Core Web Vitals (LCP/FID), A/B experimentation, and accessibility‑first design systems. Comfortable across Node.js and serverless; lead CI/CD and analytics instrumentation for data‑driven delivery.
+            </p>
+            <div class="stack">
+              <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Core Web Vitals</span><span class="chip">A/B Testing</span><span class="chip">Accessibility</span><span class="chip">CI/CD</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience -->
+        <div class="resume-wrap" style="margin-top:8px;">
+          <div class="resume-card">
+            <div class="resume-header">
+              <div>
+                <div class="role">Senior Frontend Engineer</div>
+                <div class="org">Northbay Commerce • Remote</div>
+              </div>
+              <div>
+                <div class="period">Mar 2023 – Present</div>
+              </div>
+            </div>
+            <ul class="bullets">
+              <li>Led the frontend of a headless commerce stack: Next.js storefront integrating Laravel API and WordPress/WooCommerce (REST). Built component‑driven architecture and typed contracts.</li>
+              <li>Built advanced pricing, bundles, and gift‑card UX with validation and edge‑case handling (discount stacking, variant rules, inventory states).</li>
+              <li>Integrated Stripe subscriptions (tokenization, trials, proration) with webhook‑driven UI and retry‑safe UX; supported 10k+ active subscribers.</li>
+              <li>Improved Core Web Vitals via SSR/ISR, code splitting, critical CSS, and image optimization (WebP/AVIF); reduced LCP by 35% (2.8s → 1.8s) and improved FID by 25% on PDP/checkout.</li>
+              <li>Shipped technical SEO for SPA/SSR: JSON‑LD, canonical/hreflang, preloads, automated sitemaps—driving a 20% lift in organic traffic.</li>
+              <li>Built a shared design system and accessibility‑first component library (WCAG 2.1 AA) with Storybook docs and visual regression tests.</li>
+              <li>Established testing/quality gates: Jest + RTL, Cypress/Playwright E2E, Lighthouse budgets with RUM correlation (LCP &lt; 2.5s, CLS &lt; 0.1, TBT &lt; 300ms).</li>
+              <li>Streamlined CI/CD with GitHub Actions and Docker: per‑PR previews, Cloudflare cache purges, blue/green rollouts—99.9% uptime, 75% faster deploys.</li>
+              <li>Instrumented analytics and observability (GA4, custom events, Sentry) to track conversion and UI errors; partnered with Product on A/B tests improving checkout completion.</li>
+              <li>Mentored engineers on architecture, TypeScript patterns, and performance profiling; led reviews and documentation across time zones.</li>
+            </ul>
+          </div>
+
+          <div class="resume-card">
+            <div class="resume-header">
+              <div>
+                <div class="role">Full‑Stack Developer (promoted from Frontend)</div>
+                <div class="org">ZALORA • Hong Kong</div>
+              </div>
+              <div>
+                <div class="period">Apr 2022 – Dec 2022</div>
+              </div>
+            </div>
+            <ul class="bullets">
+              <li>Increased task completion by 19% and reduced onboarding drop‑off by 23% across three product lines through research, IA, prototyping, and usability testing.</li>
+              <li>Established a cross‑platform design system (Figma + Storybook + tokens, accessibility guidelines), cutting design/dev rework by 35%.</li>
+              <li>Defined performance budgets and accessibility requirements; coached teams on motion, micro‑interactions, and data‑driven design decisions.</li>
+            </ul>
+          </div>
+
+          <div class="resume-card">
+            <div class="resume-header">
+              <div>
+                <div class="role">Frontend Engineer (React/TypeScript)</div>
+                <div class="org">ZALORA • Hong Kong</div>
+              </div>
+              <div>
+                <div class="period">Jan 2020 – Mar 2022</div>
+              </div>
+            </div>
+            <ul class="bullets">
+              <li>Cut LCP by 28% on category/PDP through SSR/ISR, code splitting, and modern image formats.</li>
+              <li>Shipped 12 TypeScript Gutenberg blocks for the marketing CMS powering campaigns and editorial content.</li>
+              <li>Helped establish a lightweight design system (25 tokens) and ensured WCAG AA compliance; adopted by 6 squads with 80% component coverage.</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Education -->
+        <div class="resume-wrap" style="margin-top:8px;">
+          <div class="resume-card">
+            <span class="pill">Education</span>
+            <div style="margin-top:10px; display:flex; justify-content:space-between; gap:10px; flex-wrap:wrap;">
+              <div>
+                <div class="role">B.Sc. in Computer Science</div>
+                <div class="org">The Hong Kong Polytechnic University (PolyU), HK</div>
+              </div>
+              <div class="period">Sep 2016 – Jun 2020</div>
+            </div>
+            <ul class="bullets">
+              <li>Coursework: Web Systems & Technologies, HCI, Software Engineering, Data Analytics</li>
+              <li>Capstone: Performance optimization and accessibility for a React/Next.js eCommerce prototype; Internship with ZALORA</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Tools & Stack -->
+        <div class="resume-wrap" style="margin-top:8px;">
+          <div class="resume-card">
+            <span class="pill">Tools & Stack</span>
+            <div class="stack">
+              <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">TypeScript</span><span class="chip">Tailwind CSS</span><span class="chip">Styled Components</span><span class="chip">Storybook</span>
+              <span class="chip">SSR/ISR</span><span class="chip">Code splitting</span><span class="chip">next/image</span><span class="chip">JSON‑LD</span><span class="chip">robots directives</span>
+              <span class="chip">Jest</span><span class="chip">React Testing Library</span><span class="chip">Cypress</span><span class="chip">Playwright</span>
+              <span class="chip">Vite</span><span class="chip">Webpack</span><span class="chip">ESLint</span><span class="chip">Prettier</span><span class="chip">PNPM/Yarn</span>
+              <span class="chip">REST</span><span class="chip">WordPress/WooCommerce</span><span class="chip">Laravel API</span>
+              <span class="chip">Stripe (subscriptions/webhooks)</span>
+              <span class="chip">GitHub Actions</span><span class="chip">Docker</span><span class="chip">Cloudflare</span><span class="chip">Sentry</span><span class="chip">GA4</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Contact -->
+        <div class="resume-wrap" style="margin-top:8px;">
+          <div class="resume-card" style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div class="role">KAROL ABEL (CONGMING CHEN)</div>
+              <div class="muted">New Territories, Hong Kong SAR • <a href="mailto:shinny.aurora021@gmail.com">shinny.aurora021@gmail.com</a></div>
+            </div>
+            <div>
+              <a class="btn" href="/Karol-Abel-Resume.pdf" target="_blank" rel="noopener">Download Resume (PDF)</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>Contact</h2>
+          <p class="muted">Have a project in mind? Let’s chat.</p>
+        </div>
+        <div class="contact">
+          <form class="form" action="https://formspree.io/f/your-id" method="POST">
+            <div>
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your name" required />
+            </div>
+            <div>
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required />
+            </div>
+            <div>
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="Tell me about your project..." required></textarea>
+            </div>
+            <button class="btn primary" type="submit">Send Message</button>
+          </form>
+          <div class="side">
+            <div class="form" role="region" aria-label="Contact info">
+              <h3 style="margin:0 0 8px;">Prefer email or Telegram?</h3>
+              <p class="muted" style="margin:0 0 10px;">
+                <a href="mailto:shinny.aurora021@gmail.com">shinny.aurora021@gmail.com</a> •
+                <a href="https://t.me/sas0326" target="_blank" rel="noopener">t.me/sas0326</a>
+              </p>
+              <div class="socials">
+                <a href="https://github.com/" aria-label="GitHub profile">GitHub</a>
+                <a href="https://t.me/sas0326" aria-label="Telegram">@sas0326</a>
+              </div>
+            </div>
+            <div class="form">
+              <h3 style="margin:0 0 8px;">Availability</h3>
+              <p class="muted" style="margin:0;">Open to roles and freelance • Remote or HK‑based</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> KAROL ABEL. All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
